@@ -9,8 +9,7 @@ import java.util.List;
 public interface KitapRepository extends JpaRepository<Kitap, Long> {
 
     //Dram ve Hikaye türündeki kitapları listeleyin. JOIN kullanmadan yapın.
-    String QUESTION_1 = "select distinct k.ad from tur as t, kitap as k\n" +
-            "where t.ad in ('Dram','Hikaye');";
+    String QUESTION_1 = "SELECT k.* FROM kitap k,tur t WHERE k.turno = t.turno AND t.ad IN ('Hikaye','Dram')";
     @Query(value = QUESTION_1, nativeQuery = true)
     List<Kitap> findBooks();
 
